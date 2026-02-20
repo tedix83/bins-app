@@ -100,7 +100,7 @@ def build_calendar(services: list[dict]) -> bytes:
             alarm.add("description", vText(f"Put out {name} bin tonight!"))
             # Trigger: day before at 19:00 local
             # We express as absolute time offset: -17h from midnight = 19:00 prev day
-            alarm.add("trigger", timedelta(hours=-17))
+            alarm.add("trigger", timedelta(hours=-2))
             event.add_component(alarm)
 
             cal.add_component(event)
