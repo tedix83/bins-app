@@ -12,10 +12,14 @@ from dateutil.parser import parse as dateparse
 import hashlib
 import re
 from collections import defaultdict
+import os
 
 app = Flask(__name__)
 
-API_URL = "https://api.southglos.gov.uk/wastecomp/GetCollectionDetails?uprn=540378"
+UPRN = os.environ.get("UPRN")
+if not UPRN:
+    raise RuntimeError("UPRN environment variable is not set")
+API_URL = f"https://api.southglos.gov.uk/wastecomp/GetCollectionDetails?uprn={UPRN}"
 
 MONTHS_AHEAD = 6
 
