@@ -183,6 +183,15 @@ HTML_TEMPLATE = """
       border-color: var(--pink);
       background: #fff0f8;
     }
+    .next-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--pink);
+      margin-bottom: 0.5rem;
+    }
     .collection-date {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 900;
@@ -221,15 +230,7 @@ HTML_TEMPLATE = """
     .tag-Food      { background: var(--mint); }
     .tag-Recycling { background: #ffe8c0; }
     .tag-Garden    { background: var(--yellow); }
-    .next-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--pink);
-      margin-bottom: 1rem;
-    }
+
     .ics-link {
       display: inline-block;
       margin-top: 2rem;
@@ -256,15 +257,15 @@ HTML_TEMPLATE = """
 </head>
 <body>
   <h1>Bin Collections</h1>
-  <p class="subtitle">South Gloucestershire — upcoming schedule</p>
+  <p class="subtitle">Ted's House — upcoming schedule</p>
 
   {% if error %}
     <p class="error">{{ error }}</p>
   {% else %}
     {% for i, (cdate, services) in enumerate(collections.items()) %}
       {% if i < 8 %}
+        {% if i == 0 %}<div class="next-label">↑ Next collection</div>{% endif %}
         <div class="collection {% if i == 0 %}next{% endif %}">
-          {% if i == 0 %}<div class="next-label">↑ Next collection</div>{% endif %}
           <div class="collection-date">
             <div class="month">{{ cdate.strftime('%b') }}</div>
             <div class="day">{{ cdate.strftime('%-d') }}</div>
