@@ -268,7 +268,7 @@ HTML_TEMPLATE = """
   {% else %}
     {% for i, (cdate, services) in enumerate(collections.items()) %}
       {% if i < 8 %}
-        {% if i == 0 %}<div class="next-label">↑ Next collection</div>{% endif %}
+        {% if i == 0 %}<div class="next-label">↓ Next collection</div>{% endif %}
         <div class="collection {% if i == 0 %}next{% endif %}">
           <div class="collection-date">
             <div class="month">{{ cdate.strftime('%b') }}</div>
