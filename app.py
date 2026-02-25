@@ -231,10 +231,10 @@ HTML_TEMPLATE = """
       padding: 0.2rem 0.7rem;
       border: 2px solid var(--black);
     }
-    .tag-Refuse    { background: #ffd6ec; }
-    .tag-Food      { background: var(--mint); }
-    .tag-Recycling { background: #ffe8c0; }
-    .tag-Garden    { background: var(--yellow); }
+    .tag-Refuse    { background: #333333; color: #ffffff; }
+    .tag-Food      { background: #ffd6ec; color: #111111; }
+    .tag-Recycling { background: #ffe8c0; color: #111111; }
+    .tag-Garden    { background: #85FFBE; color: #111111; }
 
     .ics-link {
       display: inline-block;
