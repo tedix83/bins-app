@@ -92,8 +92,9 @@ def build_calendar(day_map: dict) -> bytes:
     cal.add("X-WR-TIMEZONE", "Europe/London")
 
     for cdate, service_names in day_map.items():
-        # Sort services consistently
-        service_names = sorted(set(service_names))
+        # Sort services in preferred order
+        ORDER = ["Garden", "Refuse", "Recycling", "Food"]
+        service_names = sorted(set(service_names), key=lambda s: ORDER.index(s) if s in ORDER else 99)
 
         # Build a human-readable summary
         if len(service_names) == 1:
@@ -310,7 +311,8 @@ def index():
         services = data.get("value", [])
         day_map = get_collections(services)
         # Convert to sorted list of (date, [services]) for template
-        collections = {k: sorted(set(v)) for k, v in day_map.items()}
+        ORDER = ["Garden", "Refuse", "Recycling", "Food"]
+        collections = {k: sorted(set(v), key=lambda s: ORDER.index(s) if s in ORDER else 99) for k, v in day_map.items()}
         return render_template_string(HTML_TEMPLATE, collections=collections, error=None, enumerate=enumerate)
     except Exception as e:
         return render_template_string(HTML_TEMPLATE, collections={}, error=str(e), enumerate=enumerate)
